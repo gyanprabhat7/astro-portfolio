@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug"
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5">
+    <div class="text-xl py-1">Hey there 👋</div>
+    <div class="text-5xl font-bold">I'm Gyan Prabaht</div>
+    <div class="text-3xl py-3 font-bold">Student and Developer</div>
+    <div class="py-2">
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="https://twitter.com/gyanprabhat_" target="_blank"> Let's connect!</a>
+      <a href="https://github.com/gyanprabhat7" target="_blank" class="btn btn-outline ml-5">
+        Github
+      </a>
+    </div>
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+  </div>
+
+  <HorizontalCard
+    title="Game Forge Federation"
+    img="/gff.png"
+    desc="A social media platform for gamers and game developers to connect, post, write, join groups and chat with each other."
+    url="https://games.web-stage.in"
+    badge="Wordpress"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="ITMx Campus Platform"
+    img="/itmx.png"
+    desc="ITMx stands as a dedicated social platform tailored for both ITMBU students and faculty members. Dive into the diverse experience it offers – join groups, ignite conversations, spark discussions, share memes, and simply have a blast."
+    url="https://itmxcampusplatform.42web.io/"
+    badge="Wordpress"
+  />
+
+  <a class="btn" href="/projects" target="_blank">View all</a>
+
+  
+</BaseLayout>
